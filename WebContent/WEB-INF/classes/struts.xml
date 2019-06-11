@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<!-- 一定要用这一项添加名为sturts.objectiveFactory的常量，把值设为spring，表示该Action由spring产生 -->
+	<constant name="struts.objectFactory" value="spring" />
+	<!--当是开发阶段时为true,当上线后可设为false -->
+	<!-- 开发模式下使用,这样可以打印出更详细的错误信息 -->
+    <constant name="struts.devMode" value="true" />
+    <!-- 默认的视图主题 -->
+    <constant name="struts.ui.theme" value="simple" />
+    <!--<constant name="struts.objectFactory" value="spring" />-->
+    <!--解决乱码    -->
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <!-- 指定允许上传的文件最大字节数。默认值是2097152(2M) -->
+    <constant name="struts.multipart.maxSize" value="10701096"/>
+    <!-- 设置上传文件的临时文件夹,默认使用javax.servlet.context.tempdir -->
+    <constant name="struts.multipart.saveDir " value="d:/tmp" />
+   <include file="struts-default.xml" />
+	<!-- There is no Action mapped for namespace / and action name -->
+	<!-- namespace="/" 避免报错 -->
+	<package name="myProject" namespace="/" extends="struts-default">
+	
+		<action name="fenleiall" class="doAction" method="fenleiall">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+		
+		<action name="addfenlei" class="doAction" method="addfenlei">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+
+<action name="delFenlei" class="doAction" method="delFenlei">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+		<action name="addkucun" class="doAction" method="addkucun">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+		<action name="kucunall" class="doAction" method="kucunall">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+		
+		<action name="delrk" class="doAction" method="delrk">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+		
+		<action name="shangjia" class="doAction" method="shangjia">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+		
+		<action name="showShangjiaAll" class="doAction" method="showShangjiaAll">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+		
+		<action name="spxiugai" class="doAction" method="spxiugai">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+		
+		<action name="spshanchu" class="doAction" method="spshanchu">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+		
+		<action name="addhuiyuan" class="doAction" method="addhuiyuan">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+		
+		<action name="showHuiyuanAll" class="doAction" method="showHuiyuanAll">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+		
+		<action name="hyxiugai" class="doAction" method="hyxiugai">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+		
+		<action name="hyshanchu" class="doAction" method="hyshanchu">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+		
+		<action name="hychongzhi" class="doAction" method="hychongzhi">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+	
+		<action name="showShouhou" class="doAction" method="showShouhou">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+		<action name="addshouhou" class="doAction" method="addshouhou">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+		
+		<action name="findBysptm" class="doAction" method="findBysptm">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+		
+		<action name="addxiaofei_putong" class="doAction" method="addxiaofei_putong">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+		
+		<action name="findBydhhm" class="doAction" method="findBydhhm">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+		
+		<action name="addxiaofei_huiyuan" class="doAction" method="addxiaofei_huiyuan">
+			<result name="success">/fenlei.jsp</result>
+			<result name="error">/fenlei.jsp</result>
+		</action>
+		
+		<action name="tologin" class="doAction" method="tologin">
+			<result name="success">/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="logout" class="doAction" method="logout">
+			<result name="success">/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="updatemima" class="doAction" method="updatemima">
+			<result name="success">/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+	</package>
+	
+	
+	<!-- 图片 -->
+	 <package name="upload" namespace="/" extends="json-default">
+      <action name="upload" class="doAction" method="upload1">
+          <result name="success" type="json">
+             <!-- <param name="contentType">text/html</param> -->
+                           <param name="root">resultObj</param>
+             
+          </result>
+      </action>
+   </package>
+</struts>    

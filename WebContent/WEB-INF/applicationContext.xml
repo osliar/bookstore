@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	
+
+
+
+
+	<!--1、 定义数据源的信息 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<!-- 注：jdbcUrl的值不能换行！ -->
+		<property name="jdbcUrl">
+			<value>jdbc:mysql://127.0.0.1:3306/fzxs?useUnicode=true&amp;characterEncoding=UTF-8</value>
+		</property>
+		<property name="user">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>Root888888</value>
+		</property>
+	</bean>
+
+	<!--2、定义Hibernate的SessionFactory -->
+	<!-- 2.1、SessionFactory使用的数据源为上面的数据源 -->
+	<!-- 2.2、指定了Hibernate的映射文件和配置信息 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="show_sql">true</prop>
+				<prop key="hibernate.jdbc.batch_size">20</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<!-- <value>entities/Userinfo.hbm.xml</value> -->
+			</list>
+		</property>
+	</bean>
+	<!-- 配置Action Service DAO template -->
+	<!-- 配置template，并为其注入dataSource -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<!--业务控制类 -->
+	<bean id="serviceManager" class="serviceImpl.ServiceManagerImpl">
+		<property name="dao">
+			<ref bean="baseDao" />
+		</property>
+	</bean>
+	<!--业务 DAO -->
+	<bean id="baseDao" class="daoImpl.DaoImpl">
+		<property name="jdbcTemplate">
+			<ref bean="jdbcTemplate" />
+		</property>
+	</bean>
+	<!-- ServiceAction 配置 -->
+	<bean id="doAction" class="action.ServiceAction" scope="prototype">
+		<property name="serviceManager">
+			<ref bean="serviceManager" />
+		</property>
+	</bean>
+	<!-- more bean definitions go here -->
+</beans>
